@@ -2,6 +2,9 @@ import { useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Group, MeshBasicMaterial, Vector3 } from 'three'
 import { sound } from '../../audio/bus'
+
+// How long their song lasts (matches SONG_SECONDS in audio/sfx.ts).
+const SONG_SECONDS = 11
 import { OLD_COUPLE_X } from '../../data/places'
 import { useAnchor } from '../../engine/anchors'
 import { useInteractable } from '../../engine/interactables'
@@ -35,7 +38,7 @@ export function OldCouple() {
     x: () => OLD_COUPLE_X,
     onActivate: () => {
       const c = s.current
-      if (frame.time - c.playing < 4.8) return
+      if (frame.time - c.playing < SONG_SECONDS) return
       c.playing = frame.time
       sound('song', { x: OLD_COUPLE_X })
       useStore.getState().say('couple', LINES[c.talks++ % LINES.length], 3000)
@@ -46,7 +49,7 @@ export function OldCouple() {
     const c = s.current
     const t = frame.time
     const since = t - c.playing
-    const listening = since < 4.8
+    const listening = since < SONG_SECONDS
     // they sway together while the song plays, and lean in a little anyway
     const sway = listening ? Math.sin(t * 2.4) * 0.06 : 0
     if (him.current) him.current.rotation.z = -0.12 + sway

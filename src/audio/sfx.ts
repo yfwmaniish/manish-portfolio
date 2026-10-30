@@ -287,22 +287,69 @@ export const pop = () =>
     }
   }, 0.6)
 
-/** An old film song leaking out of a shared pair of earphones: tinny and far away. */
+/** A love song leaking out of a shared pair of earphones: tinny and far away.
+ *  An original slow romantic ballad in A minor, in the mood of a 2010s Hindi film
+ *  love song: piano arpeggios, a soft string pad, and a long, aching melody. */
+const SONG_SECONDS = 11 // OldCouple.tsx sways for the same time
 export const song = () =>
-  render(4.8, (out, t) => {
-    // a simple tune in a minor key, over a soft held chord
-    const tune = [440, 523, 587, 523, 440, 392, 440, 0, 523, 587, 659, 587, 523, 440]
-    const beat = 0.32
-    const bp = new Biquad('bandpass', 1300, 0.9)
+  render(SONG_SECONDS, (out) => {
+    const hz = (n: number) => 440 * 2 ** ((n - 69) / 12) // MIDI note number to Hz
+    const beat = 0.38
+    const lead = 0.4
+    // melody: [MIDI note, beats]; 0 is a rest
+    const tune: [number, number][] = [
+      [76, 2], [74, 1], [72, 1], [71, 2], [72, 1], [69, 3],
+      [67, 1], [69, 1], [72, 2], [76, 2], [74, 2],
+      [72, 1], [71, 1], [69, 1], [67, 1], [69, 4],
+    ]
+    // chords, 4 beats each: Am F C G | Am F G Am  (as MIDI roots + minor/major)
+    const chords: [number, boolean][] = [[57, true], [53, false], [48, false], [55, false], [57, true], [53, false], [55, false], [57, true]]
+
+    // a soft piano note: a few harmonics, quick attack, long decay
+    const piano = (n: number, at: number, dur: number, vol: number) => {
+      const f = hz(n)
+      const i0 = Math.floor(at * SR)
+      const len = Math.min(out.length - i0, Math.floor((dur + 1.2) * SR))
+      for (let j = 0; j < len; j++) {
+        const s = j / SR
+        const env = Math.min(1, s / 0.008) * Math.exp(-s / (0.5 + dur * 0.25)) * (s > dur ? Math.exp(-(s - dur) / 0.25) : 1)
+        const w = Math.sin(2 * Math.PI * f * s) + 0.45 * Math.sin(4 * Math.PI * f * s) * Math.exp(-s / 0.3) + 0.2 * Math.sin(6 * Math.PI * f * s) * Math.exp(-s / 0.2)
+        out[i0 + j] += w * env * vol
+      }
+    }
+
+    // melody, played a little louder, with a touch of vibrato held in by the decay
+    let t0 = lead
+    for (const [n, b] of tune) {
+      if (n) piano(n, t0, b * beat, 0.55)
+      t0 += b * beat
+    }
+    // left hand: rolling arpeggios, root - fifth - octave - third, in eighth notes
+    chords.forEach(([root, minor], c) => {
+      const third = root + (minor ? 3 : 4) + 12
+      const pattern = [root, root + 7, root + 12, third, root + 12, root + 7, root + 12, third]
+      pattern.forEach((n, k) => piano(n, lead + (c * 4 + k * 0.5) * beat, 0.5 * beat, 0.16))
+    })
+    // a soft string pad under each chord, swelling in and out
     for (let i = 0; i < out.length; i++) {
-      const s = t(i)
-      const k = Math.floor(s / beat)
-      const f = tune[k % tune.length]
-      const u = (s % beat) / beat
-      const voice = f ? Math.sin(2 * Math.PI * f * s + 0.6 * Math.sin(2 * Math.PI * 5.5 * s)) * Math.sin(Math.PI * Math.min(1, u * 1.2)) : 0
-      const pad = (Math.sin(2 * Math.PI * 220 * s) + Math.sin(2 * Math.PI * 261.6 * s) + Math.sin(2 * Math.PI * 329.6 * s)) * 0.15
-      const env = Math.min(1, s / 0.4) * Math.min(1, (4.8 - s) / 0.6)
-      out[i] = bp.run(voice + pad) * env
+      const s = i / SR
+      const c = Math.min(chords.length - 1, Math.max(0, Math.floor((s - lead) / (4 * beat))))
+      const [root, minor] = chords[c]
+      const cs = (s - lead) / (4 * beat) - c
+      const swell = s < lead ? 0 : Math.sin(Math.PI * Math.min(1, Math.max(0, cs))) * 0.6 + 0.4
+      let pad = 0
+      for (const n of [root + 12, root + 12 + (minor ? 3 : 4), root + 19]) {
+        const f = hz(n)
+        pad += Math.sin(2 * Math.PI * f * s + 0.3 * Math.sin(2 * Math.PI * 4.8 * s)) + 0.5 * Math.sin(2 * Math.PI * f * 1.003 * s)
+      }
+      out[i] += pad * 0.035 * swell
+    }
+    // squeeze it through a small earphone speaker, and fade the ends
+    const bp = new Biquad('bandpass', 1200, 0.7)
+    for (let i = 0; i < out.length; i++) {
+      const s = i / SR
+      const fade = Math.min(1, s / 0.3) * Math.min(1, (SONG_SECONDS - s) / 1.2)
+      out[i] = bp.run(out[i]) * fade
     }
   }, 0.6)
 
