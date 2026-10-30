@@ -13,7 +13,7 @@ export const CHAT_INVITE = "ok fine. since you're here, ask me something. (pick 
 export const CHAT: Record<string, ChatQuestion> = {
   what: {
     q: 'so what do you actually do?',
-    a: ['security research, mostly.', 'I take malware apart, read the logs nobody wants to read, and test whether AI defences can be fooled.', "so far at DRDO, the Haryana Police STF and IBM."],
+    a: ['security research, mostly.', 'I take malware apart, read the logs nobody wants to read, and test whether AI defences can be fooled.', "so far at DRDO, the Haryana Police STF and IBM. I've also reported bugs in Airtel, Jio and Vi through CERT-In."],
   },
   hire: {
     q: 'are you open to work?',

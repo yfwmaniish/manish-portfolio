@@ -94,6 +94,9 @@ export const SIDE_PROJECTS: { title: string; line: string; href?: string }[] = [
   { title: 'Trinetra / Hydra', line: 'Dark-web threat intel. Scrapes forums, Pastebin and Reddit for leaks and attack chatter, and found 20+ leaks of Aadhaar and PAN records.', href: 'https://github.com/yfwmaniish/Trinetra-3.0-Backend' },
   { title: 'Akitty', line: 'ESP32 Rubber Ducky studio with Team HYDRA: turns DuckyScript into Arduino code, for authorised pentests.', href: 'https://github.com/yfwmaniish/Akitty' },
   { title: 'S3X Security Suite', line: 'One scanner for open S3 buckets, open FTP, exposed dev endpoints, weak JWTs, subdomains and ports.', href: 'https://github.com/yfwmaniish/S3X-Security-Suite-X' },
+  { title: 'Kuber', line: 'Anti-money-laundering analysis: upload bank ledgers, trace multi-hop transfers on a network graph, and isolate laundering loops.' },
+  { title: 'Signature verification', line: 'A computer-vision model that checks handwritten signatures on financial and legal documents and flags forgeries.' },
+  { title: 'EEG mental-state model', line: 'A multi-output random forest that reads raw EEG and predicts attentive, calm, stressed or mind-wandering.' },
   { title: 'Aakriti', line: 'Crypto forensics: trace Bitcoin wallets on a live graph and replay where the money went.', href: 'https://github.com/yfwmaniish/Aakriti' },
   { title: 'agenttrace', line: 'Tamper-proof, signed audit trails for what AI agents do: hash chains, Ed25519, Merkle trees.', href: 'https://github.com/yfwmaniish/agenttrace' },
   { title: 'Codebase Time Machine', line: 'Ask a repo "why is this here?" and get answers that cite the commits.', href: 'https://github.com/yfwmaniish/codebase-time-machine' },
@@ -123,13 +126,16 @@ export const EXPERIENCE: { org: string; role: string; when: string; line: string
   { org: 'Research Centre Imarat (RCI), DRDO', role: 'Cybersecurity Research Intern · Hyderabad', when: 'Aug 2026 – now', line: 'A confidential cybersecurity research project at a defence R&D lab. The details stay there.' },
   { org: 'Digital Peacock', role: 'Cyber Security Analyst · Dwarka, Delhi', when: 'Jun – Jul 2026', line: 'Security analyst role.' },
   { org: 'Uttar Pradesh Police', role: 'Cyber Security Intern · Amroha', when: 'Jun 2026', line: 'Cyber security internship with the UP Police.' },
-  { org: 'Special Task Force, Haryana Police', role: 'Cybersecurity Research Associate', when: 'Jul 2025 – Feb 2026', line: 'Built and ran SDRMS, bringing 4 TB of records and logs into one searchable system, and helped correlate cases across investigations.' },
+  { org: 'Independent vulnerability research', role: 'Security Researcher', when: '2025 – now', line: 'Found and responsibly disclosed critical vulnerabilities affecting Airtel, Jio and Vi, and coordinated the fixes with the companies and CERT-In.' },
+  { org: 'Special Task Force, Haryana Police', role: 'Cybersecurity Research Associate', when: 'Jul 2025 – Feb 2026', line: 'Built and ran SDRMS, bringing 4 TB of records and logs into one searchable system, helped correlate cases across investigations, and rolled out an eOffice system for 25 users.' },
+  { org: 'GD Goenka University', role: 'Cybersecurity & Neural Systems Researcher', when: '2024 – now', line: 'Research on hybrid brain-computer interfaces and emotion recognition from EEG, MEG and fMEG signals (including the DEAP dataset), with an eye on neurosecurity.' },
   { org: 'IBM', role: 'Cybersecurity Intern · Remote', when: 'Jun – Aug 2024', line: 'Found and documented 12 endpoint vulnerabilities across 4 environments, wrote threat-detection playbooks, and built Trikaal, a role-based file-sharing app.' },
   { org: 'Infinity eServices', role: 'Summer Intern', when: 'Jul – Aug 2024', line: 'Integrated a CRM into the Universal Service Obligation (USO) system and wrote its website policies with the legal and compliance teams.' },
 ]
 
 /** Wins and recognition, from his résumé and LinkedIn. */
 export const ACHIEVEMENTS = [
+  'Responsibly disclosed vulnerabilities affecting Airtel, Jio and Vi (via CERT-In)',
   'Top 5 globally, Hackapptoi CTF',
   'Finalist, Vishwa CTF (national)',
   '6× hackathon winner',
@@ -141,7 +147,7 @@ export const ACHIEVEMENTS = [
 
 export const LEADERSHIP = [
   'Founder, Veltro',
-  'Founding Board Member, nCreeps (CTF team, since 2022)',
+  'Founding Board Member, nCreeps (CTF team of 105+, since 2022)',
   'IBM Ambassador, Think 2025 Mumbai',
   'Head of PR, Avishkar Innovation Cell',
   'Secretary General, Lucid Vista',
@@ -162,7 +168,7 @@ export const SCREENS = {
     title: 'Manish Tiwari',
     meta: 'Gurugram · aka Decimal',
     desc: 'Final year of B.Tech CSE (cybersecurity) at GD Goenka University. Cybersecurity researcher.',
-    note: "Founder of Veltro, IBM Ambassador, and a CTF player since 2022. I've worked with DRDO, the Haryana Police Special Task Force, the UP Police and IBM. I build tools that turn raw logs, malware and network traffic into answers a defender can act on, and I send fixes to open source projects like PostHog, Strapi and htmx.",
+    note: "Founder of Veltro, IBM Ambassador, and a CTF player since 2022. I've worked with DRDO, the Haryana Police Special Task Force, the UP Police and IBM, and I've reported vulnerabilities in Airtel, Jio and Vi through CERT-In. I build tools that turn raw logs, malware and network traffic into answers a defender can act on, and I send fixes to open source projects like PostHog, Strapi and htmx.",
     facts: [
       ['Studying at', 'GD Goenka University · CGPA 9.4'],
       ['Right now', 'Research intern at RCI, DRDO'],

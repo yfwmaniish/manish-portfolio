@@ -2,9 +2,9 @@
 // The chart is drawn from SKILL_GROUPS, so adding a skill adds a star.
 
 export const SKILL_GROUPS = [
-  { name: 'SIEM & detection', items: ['Wazuh', 'ELK Stack', 'DFIR-IRIS', 'Splunk', 'MITRE ATT&CK', 'Log analysis', 'Alert triage'] },
-  { name: 'Threat intel', items: ['MISP', 'VirusTotal', 'Maltego', 'Shodan', 'theHarvester', 'YARA / Sigma'] },
-  { name: 'Offense', items: ['Nmap', 'Burp Suite', 'Metasploit', 'Wireshark', 'SQLmap', 'Atomic Red Team', 'OWASP Top 10'] },
+  { name: 'Detection & DFIR', items: ['Wazuh', 'ELK Stack', 'Splunk', 'DFIR-IRIS', 'MITRE ATT&CK', 'Autopsy', 'Volatility', 'FTK Imager'] },
+  { name: 'Threat intel', items: ['MISP', 'VirusTotal', 'Maltego', 'SpiderFoot', 'Shodan', 'theHarvester', 'YARA / Sigma'] },
+  { name: 'Offense', items: ['Nmap', 'Burp Suite', 'Metasploit', 'Wireshark', 'SQLmap', 'Nikto', 'Gobuster', 'OWASP Top 10'] },
   { name: 'Code & platforms', items: ['Python', 'Bash', 'SQL', 'PowerShell', 'Linux', 'Docker', 'Git', 'FastAPI'] },
 ]
 
