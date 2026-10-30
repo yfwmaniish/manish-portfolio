@@ -18,10 +18,10 @@ import { PageSheet } from '../pages/PageSheet'
 const Z = -1.25
 const HEAD_Y = 2.25
 const DOT = 0.2
-const MORSE: Record<string, string> = { A: '.-', E: '.', H: '....', I: '..', L: '.-..', R: '.-.' }
-// What it says each time you watch. DRAFT, Ali to approve.
-const MESSAGES = ['HI', 'ALI', 'HIRE ALI']
-const ENDINGS = ['(It blinked: HI.)', '(It blinked: ALI.)', '(It blinked: HIRE ALI. Very subtle.)']
+const MORSE: Record<string, string> = { A: '.-', E: '.', H: '....', I: '..', M: '--', N: '-.', R: '.-.', S: '...' }
+// What it says each time you watch.
+const MESSAGES = ['HI', 'MANISH', 'HIRE MANISH']
+const ENDINGS = ['(It blinked: HI.)', '(It blinked: MANISH.)', '(It blinked: HIRE MANISH. Very subtle.)']
 
 /** On/off times for a message, in seconds from the start. */
 function schedule(text: string) {

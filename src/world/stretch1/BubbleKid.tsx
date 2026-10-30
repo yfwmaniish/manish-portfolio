@@ -21,7 +21,7 @@ const WAND: [number, number] = [0.22, 0.95]
 const COUNT = 9
 const BIG = 0.32
 // DRAFT lines, Ali to approve.
-const LINES = ['Pop them all! Bet you can’t!', 'Again! Again!', 'Ammi says I have to go home at nine.']
+const LINES = ['Pop them all! Bet you can’t!', 'Again! Again!', 'Mummy says I have to go home at nine.']
 const GIANT = 'Watch this one. It’s HUGE.'
 const DROPPED = 'There was paper inside that one!'
 
