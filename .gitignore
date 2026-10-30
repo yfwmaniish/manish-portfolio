@@ -1,0 +1,26 @@
+# dependencies and build output
+node_modules
+dist
+*.tsbuildinfo
+
+# local env and secrets
+.env
+.env.*
+*.local
+
+# deploy and tooling state
+.vercel
+.claude
+
+# editor and OS files
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+*.log
+
+# working files kept locally, not published
+reference/
+AGENTS.md
+docs/HANDOFF.md
+*.zip
